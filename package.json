@@ -27,7 +27,24 @@
     "commands": [
       {
         "command": "antigravity-switcher.selectAccount",
-        "title": "Antigravity: Switch Google Account (Dropdown)"
+        "title": "⚡ Account & Usage Switcher",
+        "icon": "$(zap)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "antigravity-switcher.selectAccount",
+          "when": "view == antigravity.panel",
+          "group": "navigation@0"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "antigravity-switcher.selectAccount",
+        "key": "ctrl+alt+a",
+        "mac": "cmd+alt+a"
       }
     ]
   }
