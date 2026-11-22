@@ -2,7 +2,7 @@
   "name": "antigravity-account-switcher",
   "displayName": "Antigravity Account Switcher",
   "description": "Switch between multiple Google accounts in Antigravity to bypass model rate limits",
-  "version": "3.3.0",
+  "version": "3.0.0",
   "publisher": "venomchampion",
   "license": "MIT",
   "repository": {
@@ -28,10 +28,6 @@
       {
         "command": "antigravity-switcher.selectAccount",
         "title": "Antigravity: Switch Google Account (Dropdown)"
-      },
-      {
-        "command": "antigravity-switcher.patchChatUI",
-        "title": "Antigravity: Inject Usage & Switcher into Chat Input"
       }
     ]
   }
