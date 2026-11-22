@@ -1,0 +1,34 @@
+{
+  "name": "antigravity-account-switcher",
+  "displayName": "Antigravity Account Switcher",
+  "description": "Switch between multiple Google accounts in Antigravity to bypass model rate limits",
+  "version": "3.0.0",
+  "publisher": "venomchampion",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/venomunicorn/antigravity-account-switcher"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "antigravity-switcher.selectAccount",
+        "title": "Antigravity: Switch Google Account (Dropdown)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+*.vsix
+__pycache__/
+*.pyc
+Profiles/
+*.token
+*.log
