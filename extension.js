@@ -3,13 +3,15 @@ const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
+const { patchAgy, findAgyExtension } = require('./scripts/patch-antigravity-webview');
 
 /**
  * Antigravity Multi-Account Switcher (Premium Dropdown UI with Cloud & Personal Support)
- * Version 3.2.0
+ * Version 3.3.0
  * 
  * Features:
  * - Auto-detects Google Cloud (GCP) vs Personal (Consumer) accounts
+ * - In-chat "⚡ Usage" button & "Account & Usage" popup with 1-click switcher
  * - Single clean status bar item:
  *     * ☁️ Cloud Blue (#38bdf8) for Google Cloud projects
  *     * 🟢 Bright Green (#4ade80) for Personal Google accounts
@@ -21,7 +23,17 @@ const os = require('os');
  * - Rate limit detection with auto-switch prompts
  */
 function activate(context) {
-    console.log('Antigravity Account Switcher v3.2.0 (Cloud & Personal Support) active');
+    console.log('Antigravity Account Switcher v3.3.0 (Cloud & Personal Support) active');
+
+    // Auto-patch Antigravity chat input if needed
+    try {
+        const agyTarget = findAgyExtension();
+        if (agyTarget) {
+            patchAgy(agyTarget);
+        }
+    } catch (e) {
+        console.warn('[Antigravity Switcher] Auto-patch skipped:', e.message);
+    }
 
     const scriptPath = path.join(context.extensionPath, 'scripts', 'profile_manager.py');
     const homedir = os.homedir();
@@ -499,6 +511,25 @@ function activate(context) {
         qp.show();
     });
     context.subscriptions.push(selectAccountCmd);
+
+    const patchCmd = vscode.commands.registerCommand('antigravity-switcher.patchChatUI', () => {
+        try {
+            const agyTarget = findAgyExtension();
+            if (agyTarget) {
+                patchAgy(agyTarget);
+                vscode.window.showInformationMessage('✓ Successfully injected Usage & Switcher button into Antigravity chat input! Reload window to apply changes.', 'Reload Window').then(action => {
+                    if (action === 'Reload Window') {
+                        vscode.commands.executeCommand('workbench.action.reloadWindow');
+                    }
+                });
+            } else {
+                vscode.window.showErrorMessage('Could not locate Antigravity IDE application directory.');
+            }
+        } catch (err) {
+            vscode.window.showErrorMessage('Failed to patch Antigravity chat UI: ' + err.message);
+        }
+    });
+    context.subscriptions.push(patchCmd);
 
     async function triggerAddNewAccount(acct) {
         const choice = await vscode.window.showQuickPick([

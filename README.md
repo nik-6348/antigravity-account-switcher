@@ -6,6 +6,7 @@ Multi-account profile manager for **Google Antigravity IDE** on macOS. Switch se
 
 ## ✨ Features
 
+- **In-Chat "⚡ Usage" Button & Modal:** Adds a native pill button directly inside the Antigravity chat input toolbar beside the model picker. Clicking it opens a compact **"Account & Usage"** popup with current account email, Google Cloud / Personal badge, rate limit status, and 1-click quick switch buttons for all saved accounts!
 - **Google Cloud & Personal Account Detection:** Automatically identifies whether you are logged in via a standard Personal Google Account or a Google Cloud (GCP) Project ID.
 - **Visual Status Bar Badge:**
   - ☁️ **Sky Blue (`#38bdf8`)**: Active Google Cloud Project session.
@@ -19,12 +20,31 @@ Multi-account profile manager for **Google Antigravity IDE** on macOS. Switch se
 
 ## 🚀 How to Use
 
-### 1. Open the Account Switcher Menu
+### 1. In-Chat "⚡ Usage" Button (Instant Access)
+- Open Antigravity Agent chat (`Cmd + L`).
+- In the chat input footer (beside the model selector), click the **`⚡ Usage`** button.
+- A sleek floating popup will appear showing:
+  - Current active Google Account email & type.
+  - **`[ ⇄ Switch Account ]`** button to switch accounts.
+  - Live Gemini model quota / rate limit status.
+  - Direct 1-click switch list for all other saved Google accounts.
+
+### 2. Status Bar Item & Command Palette
 - **Click the status bar item** in the bottom left corner:
   - Personal: `$(pass-filled) user@gmail.com`
   - Cloud: `$(cloud) Cloud: project-id`
 - Or use the command palette (`Cmd + Shift + P`):
   - Run: `Antigravity: Switch Google Account (Dropdown)`
+  - Run: `Antigravity: Inject Usage & Switcher into Chat Input` (re-patches chat UI if needed)
+
+---
+
+### 3. Automated 1-Click Chat UI Patcher
+If you ever reinstall Antigravity IDE or update it, run:
+```bash
+node scripts/patch-antigravity-webview.js
+```
+Then reload the window (`Cmd + Shift + P` -> `Developer: Reload Window`).
 
 ---
 
