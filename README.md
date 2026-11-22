@@ -6,80 +6,49 @@ Multi-account profile manager for **Google Antigravity IDE** on macOS. Switch se
 
 ## ✨ Features
 
+- **Top Right Secondary Sidebar Panel:** Access account controls from the dedicated **Top Right** auxiliary panel (alongside Claude Code and Codex).
+- **Top Right Editor Button:** Click the `⚡` account button in the top right corner of any active editor or chat header to trigger the instant switcher modal.
 - **Google Cloud & Personal Account Detection:** Automatically identifies whether you are logged in via a standard Personal Google Account or a Google Cloud (GCP) Project ID.
-- **Visual Status Bar Badge:**
-  - ☁️ **Sky Blue (`#38bdf8`)**: Active Google Cloud Project session.
-  - 🟢 **Bright Green (`#4ade80`)**: Active Personal Google session.
-- **Active Profile Always on Top:** The current session is highlighted at the top of the QuickPick menu with live status.
-- **Seamless 1-Click Switching:** Swaps macOS Keychain credentials, refreshes background language servers, and reloads the window automatically.
+- **1-Click Switching in Top Right Panel:** View all saved accounts with live badges and click `[ ⇄ Switch ]` for instant zero-hassle account switches.
+- **Clean Workspace (No Bottom Bar Clutter):** Bottom status bar is kept clean by default and controls are relocated to the Top Right.
 - **State & Tab Preservation:** Preserves open files, split editor layouts, and active workspace folders across reloads.
 - **Quota / Rate Limit Alerts:** Detects model quota limits (429 / Resource Exhausted) and suggests switching to an alternate profile.
 
 ---
 
-## 🚀 How to Use
+## 🚀 How to Use (Top Right Access)
 
-### 1. Open the Account Switcher Menu
-- **Click the status bar item** in the bottom left corner:
-  - Personal: `$(pass-filled) user@gmail.com`
-  - Cloud: `$(cloud) Cloud: project-id`
-- Or use the command palette (`Cmd + Shift + P`):
-  - Run: `Antigravity: Switch Google Account (Dropdown)`
+### 1. Dedicated Top Right Panel (Secondary Sidebar)
+- Look at the **Top Right** auxiliary sidebar icons (next to Claude Code and Codex).
+- Click the **Antigravity Accounts** icon.
+- A sleek panel opens on the right showing:
+  - **Active Account:** Email, Personal / Cloud badge, and ready status.
+  - **Saved Accounts:** Direct list with 1-click **`[ ⇄ Switch ]`** buttons.
+  - **`+ Add Another Google Account`** button.
+  - **`⚡ Open QuickPick Modal Dropdown`** button.
 
----
+### 2. Top Right Editor Title Button
+- In the top right header of any editor tab or chat window, click the **`⚡ Switch Google Account`** icon.
+- A sleek modal dropdown appears from the top with all accounts and actions.
 
-### 2. Switching Between Accounts
-1. Click on the status bar icon.
-2. Select any profile under **"SWITCH TO ANOTHER ACCOUNT"**.
-3. The IDE will instantly apply credentials and reload the window with your tabs preserved.
-
----
-
-### 3. Adding a New Google Account
-1. Open the menu and click **`$(add) Add / Sign In to Another Google Account...`**.
-2. Choose account type:
-   - **Personal Google Account:** Saves current credentials, signs out from Keychain, and reloads so you can sign in with your second Google account.
-   - **Google Cloud (GCP) Project:** Instructions to sign in via the Antigravity Desktop app using your GCP Project ID, then sync credentials back.
-3. Once logged in, the extension auto-detects and saves your new profile.
+### 3. Keyboard Shortcut & Command Palette
+- **Keyboard Shortcut:** `Cmd + Alt + A`
+- **Command Palette (`Cmd + Shift + P`):**
+  - Run: `⚡ Switch Google Account`
+  - Run: `⚡ Open Antigravity Accounts in Top Right Panel`
 
 ---
 
-### 4. Syncing & Removing Profiles
-- **Sync Current Session:** Click `$(refresh) Sync Current Account Credentials` to update saved Keychain tokens.
-- **Remove a Profile:** Click `$(trash) Remove a Saved Account Profile...` and select the profile to delete.
+## 🛠️ Installation & Sync
 
----
-
-## 🛠️ Installation
-
-### Option 1: Symlink to Antigravity Extensions Folder
 ```bash
-ln -s "$(pwd)" ~/.antigravity-ide/extensions/antigravity-account-manager
+# Symlink or copy to Antigravity Extensions directory
+cp -R . ~/.antigravity-ide/extensions/venomchampion.antigravity-account-switcher-2.3.0/
 ```
-Then restart Antigravity IDE.
-
-### Option 2: Build & Install `.vsix`
-```bash
-# Install vsce if not installed
-npm install -g @vscode/vsce
-
-# Package the extension
-vsce package --no-dependencies
-
-# Install into Antigravity
-code --install-extension antigravity-account-manager-*.vsix
-```
+Then reload window (`Cmd + Shift + P` -> `Developer: Reload Window`).
 
 ---
 
-## ⚙️ System Requirements
+## 📄 License
 
-- **Platform:** macOS (utilizes macOS Keychain via `security` command)
-- **Runtime:** Python 3.8+ (for Keychain and profile file management)
-- **Editor:** Antigravity IDE (VS Code engine `^1.85.0`)
-
----
-
-## 📄 License & Credits
-
-- Distributed under the **MIT License**.
+Distributed under the **MIT License**.

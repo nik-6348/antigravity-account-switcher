@@ -2,12 +2,13 @@
   "name": "antigravity-account-switcher",
   "displayName": "Antigravity Account Switcher",
   "description": "Switch between multiple Google accounts in Antigravity to bypass model rate limits",
-  "version": "3.0.0",
+  "version": "3.4.0",
   "publisher": "venomchampion",
+  "icon": "resources/antigravity-account.svg",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/venomunicorn/antigravity-account-switcher"
+    "url": "https://github.com/nik-6348/antigravity-account-switcher.git"
   },
   "engines": {
     "vscode": "^1.85.0"
@@ -24,14 +25,44 @@
   ],
   "main": "./extension.js",
   "contributes": {
+    "viewsContainers": {
+      "secondarySidebar": [
+        {
+          "id": "antigravity-account-sidebar",
+          "title": "Antigravity Accounts",
+          "icon": "resources/antigravity-account.svg"
+        }
+      ]
+    },
+    "views": {
+      "antigravity-account-sidebar": [
+        {
+          "type": "webview",
+          "id": "antigravityAccountView",
+          "name": "Account & Usage"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "antigravity-switcher.selectAccount",
-        "title": "⚡ Account & Usage Switcher",
-        "icon": "$(zap)"
+        "title": "⚡ Switch Google Account",
+        "icon": "$(account)"
+      },
+      {
+        "command": "antigravity-switcher.openTopRightPanel",
+        "title": "⚡ Open Antigravity Accounts in Top Right Panel",
+        "icon": "$(account)"
       }
     ],
     "menus": {
+      "editor/title": [
+        {
+          "command": "antigravity-switcher.selectAccount",
+          "group": "navigation@0",
+          "when": "true"
+        }
+      ],
       "view/title": [
         {
           "command": "antigravity-switcher.selectAccount",
@@ -46,6 +77,16 @@
         "key": "ctrl+alt+a",
         "mac": "cmd+alt+a"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Antigravity Account Switcher",
+      "properties": {
+        "antigravitySwitcher.showBottomStatusBar": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show Account status badge in bottom status bar (default: false, control moved to Top Right)"
+        }
+      }
+    }
   }
 }
